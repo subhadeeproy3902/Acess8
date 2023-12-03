@@ -1,0 +1,6 @@
+GET http://localhost:5000/api/user/userloggedin/eKacbclNtjRunVxbzgwLf9n5VwF3
+Content-Type: application/json
+
+{
+  "userID": "eKacbclNtjRunVxbzgwLf9n5VwF3"
+}
