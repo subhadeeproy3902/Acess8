@@ -25,7 +25,6 @@ app.use('/', require('./routes/index'));
 app.use('/api/qr', require('./routes/qr_url'));
 app.use('/api/url', require('./routes/url'));
 app.use('/api/login', require('./routes/userLogin'));
-app.use('/api/user/userloggedin', require('./routes/userLoggedIn'));
 
 const PORT = process.env.PORT || 5000;
 

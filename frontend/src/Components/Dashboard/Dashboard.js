@@ -16,6 +16,7 @@ const Dashboard = () => {
   const { currentUser } = useAuth();
   let x = currentUser.uid;
   const [showLoading, setShowLoading] = useState(true);
+  const [loginDays, setLoginDays] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,7 +42,7 @@ const Dashboard = () => {
             withCredentials: true,
           }
         );
-        console.log(response.data);
+        setLoginDays(response.data.loginCount);
       } catch (error) {
         console.error(error);
       }
@@ -82,9 +83,8 @@ const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      <div className="p-6 pt-24 min-h-screen lg:ml-64">
         <Routes>
-          <Route path="/" element={<DashboardHome />} />
+          <Route path="/" element={<DashboardHome loginDays={loginDays} />} />
           <Route path="/dbabout" element={<DashboardAbout />} />
           <Route path="/dbcontact" element={<DashboardContact />} />
           <Route path="/qr-generator" element={<QrGenerator />} />
@@ -92,7 +92,6 @@ const Dashboard = () => {
           <Route path="/past-urls" element={<PastUrls />} />
           <Route path="/past-qrs" element={<PastQrs />} />
         </Routes>
-      </div>
     </>
   );
 };

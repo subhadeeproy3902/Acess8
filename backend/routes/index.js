@@ -40,22 +40,4 @@ router.get("/QR/:code", async (req, res) => {
   }
 });
 
-
-router.get("/USER/:code", async (req, res) => {
-  try {
-    const userID = req.params.code;
-    console.log(userID)
-    const user = await USER.findOne({ userID });
-    if (user) {
-      user.loginCount++;
-      await user.save();
-    } else {
-      return res.status(404).json("No 1 User Found");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json("Server error");
-  }
-});
-
 module.exports = router;
