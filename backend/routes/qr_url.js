@@ -88,4 +88,14 @@ router.post("/generate-qr", async (req, res) => {
   }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    await QR.findByIdAndDelete(req.params.id);
+  } catch (err) {
+    console.error("Error deleting URL:", err);
+    res.status(500).json({ error: "An error occurred while deleting the URL" });
+  }
+});
+
+
 module.exports = router;

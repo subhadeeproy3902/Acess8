@@ -17,7 +17,7 @@ const DashboardHome = ({loginDays}) => {
       nodeEnv === "production"
         ? "https://mynly.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/users/" + x;
+    const apiUrl = baseUrl + "/api/users/user/" + x;
 
     const fetchUrls = async () => {
       try {
@@ -40,7 +40,7 @@ const DashboardHome = ({loginDays}) => {
       nodeEnv === "production"
         ? "https://mynly.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/qr/users/" + x;
+    const apiUrl = baseUrl + "/api/qr/users/user/" + x;
 
     const fetchUrls = async () => {
       try {
@@ -62,7 +62,7 @@ const DashboardHome = ({loginDays}) => {
       nodeEnv === "production"
         ? "https://mynly.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/notes/users/" + x;
+    const apiUrl = baseUrl + "/api/notes/users/user/" + x;
 
     const fetchUrls = async () => {
       try {

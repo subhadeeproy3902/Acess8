@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthContext";
 import UrlCard from "./UrlCard";
+import Loading3 from "../../Loading/Loading3";
 
 const UsedLinks = () => {
   const { currentUser } = useAuth();
   let x = currentUser.uid;
   const [urls, setUrls] = useState([]);
+
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
     const nodeEnv = process.env.REACT_APP_NODE_ENV;
@@ -14,19 +19,26 @@ const UsedLinks = () => {
       nodeEnv === "production"
         ? "https://mynly.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/users/" + x;
+    const apiUrl = baseUrl + "/api/users/" + x + `?page=${page}`;
 
     const fetchUrls = async () => {
+      setLoading(true);
       try {
         const response = await axios.get(apiUrl);
-        setUrls(response.data);
+        console.log(response.data);
+        setUrls((prevUrls) => [...prevUrls, ...response.data.urls]);
+        setHasMore(response.data.urls.length > 0);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching URLs:", error);
       }
     };
-
     fetchUrls();
-  }, [x]);
+  }, [x, page]);
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <>
@@ -42,10 +54,10 @@ const UsedLinks = () => {
           </p>
           <hr className="h-px my-8 mt-1 bg-gray-700 border-0"></hr>
         </div>
-        <div className="flex flex-col-reverse pt-5 gap-10">
+        <div className="flex flex-col pt-5 gap-10">
           {urls.length > 0 ? (
             <>
-              {urls.map((url) => (
+              {urls.map((url, index) => (
                 <UrlCard key={url._id} url={url} />
               ))}
             </>
@@ -53,6 +65,19 @@ const UsedLinks = () => {
             <p>No URLs found for the current user.</p>
           )}
         </div>
+        {loading ? (
+          <div className="w-full mt-10 flex justify-center items-center">
+            <Loading3 />
+          </div>
+        ) : (
+          <div className="w-full mt-10 flex justify-center items-center">
+            {hasMore ? (
+              <button onClick={handleLoadMore}>Load More</button>
+            ) : (
+              <p className="text-gray-500">You have reached the end.</p>
+            )}
+          </div>
+        )}
       </div>
     </>
   );

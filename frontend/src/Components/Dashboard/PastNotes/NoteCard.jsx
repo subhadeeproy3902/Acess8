@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, forwardRef } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const NoteCard = ({ note }) => {
+const NoteCard = forwardRef(({ note }, ref) => {
   const [backgroundimage, setBackgroundImages] = useState("");
   const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const getTitleBackground = () => {
@@ -66,7 +67,7 @@ const NoteCard = ({ note }) => {
       {loading ? (
         <div className="hidden" />
       ) : (
-        <div className='outline-none w-80 mb-10 m-0 sm:m-0 sm:mb-4 md:m-4'>
+        <div ref={ref} className='outline-none w-80 mb-10 m-0 sm:m-0 sm:mb-4 md:m-4'>
           <div className='min-w-xs shadow-xl rounded-3xl' style={{ backgroundImage: backgroundimage }}>
             <div className='text-slate-950 p-4'>
               <h2 className='text-xl px-2 break-all line-clamp-1 font-bold'>
@@ -108,6 +109,6 @@ const NoteCard = ({ note }) => {
       )}
     </>
   )
-}
+});
 
 export default NoteCard
