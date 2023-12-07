@@ -10,31 +10,23 @@ router.post("/userLogin", async (req, res) => {
     let user = await USER.findOne({ userID });
     if (!user) {
       console.log("Not found");
+      const currentDate = new Date().toLocaleDateString();
       user = new USER({
         userID,
-        loginCount: [1],
-        date: [new Date().toLocaleDateString()],
+        loginCount: 1,
+        dateofLogin: currentDate,
+        date: currentDate,
       });
       console.log(user);
       await user.save();
       res.json(user);
     } else {
       console.log("Found");
-      const currentDate = new Date().toLocaleDateString();
-      const lastLoginDate = user.date[user.date.length - 1];
-      
-      if (currentDate === lastLoginDate) {
-        user.loginCount[user.loginCount.length - 1] += 1;
-      } else {
-        if (user.date.length > 7) {
-          user.loginCount = [user.loginCount[user.loginCount.length - 1]];
-          user.date = [currentDate];
-        } else {
-          user.loginCount.push(1);
-          user.date.push(currentDate);
-        }
+      const currentDate2 = new Date().toLocaleDateString();
+      if (user.date !== currentDate2) {
+        user.date = currentDate2;
+        user.loginCount += 1;
       }
-
       console.log(user);
       await user.save();
       res.json(user);

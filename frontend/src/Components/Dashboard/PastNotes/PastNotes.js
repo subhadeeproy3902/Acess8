@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../../Context/AuthContext";
-import UrlCard from "./UrlCard";
+import NoteCard from "./NoteCard";
 import Loading3 from "../../Loading/Loading3";
 
-const UsedLinks = () => {
+const PastNotes = () => {
   const { currentUser } = useAuth();
   let x = currentUser.uid;
-  const [urls, setUrls] = useState([]);
-
+  const [notes, setNotes] = useState([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
 
-  useEffect(() => {
+  const fetchNotes = async () => {
+    setLoading(true);
     const nodeEnv = process.env.REACT_APP_NODE_ENV;
     const baseUrl =
       nodeEnv === "production"
         ? "https://mynly.vercel.app"
         : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/users/" + x + `?page=${page}`;
+    const apiUrl = baseUrl + "/api/notes/users/" + x + `?page=${page}`;
+    try {
+      const response = await axios.get(apiUrl);
+      setNotes((prevNotes) => [...prevNotes, ...response.data.notes]);
+      setHasMore(response.data.notes.length > 0);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching Notes:", error);
+    }
+  };
 
-    const fetchUrls = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get(apiUrl);
-        console.log(response.data);
-        setUrls((prevUrls) => [...prevUrls, ...response.data.urls]);
-        setHasMore(response.data.urls.length > 0);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching URLs:", error);
-      }
-    };
-    fetchUrls();
+  useEffect(() => {
+    fetchNotes();
   }, [x, page]);
 
   const handleLoadMore = () => {
@@ -46,23 +44,23 @@ const UsedLinks = () => {
         <div className="w-full flex flex-col">
           <h1 className="text-4xl text-left font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
             {" "}
-            Your Url History{" "}
+            Your Saved Notes{" "}
           </h1>
           <p className="my-3 text-lg font-normal text-gray-500 lg:text-xl text-left">
-            Rediscover your digital journey: Your URL History Page, where every
-            click tells a story. Navigate your online adventures effortlessly!
+            Explore your thoughts here — where every saved entry crafts a unique
+            chapter, capturing the essence of your digital journey.
           </p>
           <hr className="h-px my-8 mt-1 bg-gray-700 border-0"></hr>
         </div>
-        <div className="flex flex-col pt-5 gap-10">
-          {urls.length > 0 ? (
+        <div className="flex flex-row flex-wrap items-center justify-center pt-5 gap-4 sm:gap-4 lg:gap-10">
+          {notes.length > 0 ? (
             <>
-              {urls.map((url, index) => (
-                <UrlCard key={url._id} url={url} />
+              {notes.map((note, index) => (
+                <NoteCard key={note._id} note={note} />
               ))}
             </>
           ) : (
-            <p>No URLs found for the current user.</p>
+            <p>No Notes found for the current user.</p>
           )}
         </div>
         {loading ? (
@@ -83,4 +81,4 @@ const UsedLinks = () => {
   );
 };
 
-export default UsedLinks;
+export default PastNotes;

@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   userID: String,
-  loginCount: Array,
-  date: Array,
+  loginCount: Number,
+  dateofLogin: String,
+  date: String,
 });
 
 module.exports = mongoose.model("USER", userSchema);

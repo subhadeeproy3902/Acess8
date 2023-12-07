@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Url = require("../models/Url");
 const QR = require("../models/QR");
-const USER = require("../models/USER");
+const Note = require("../models/Note");
+const Todo = require("../models/Todo");
 
 // @route     GET /:code
 // @desc      Redirect to long/original URL
@@ -40,22 +41,34 @@ router.get("/QR/:code", async (req, res) => {
   }
 });
 
-
-router.get("/USER/:code", async (req, res) => {
+router.get("/notes/:useruid", async (req, res) => {
   try {
-    const userID = req.params.code;
-    console.log(userID)
-    const user = await USER.findOne({ userID });
-    if (user) {
-      user.loginCount++;
-      await user.save();
+    const notes = await Note.find({ userUid: req.params.useruid });
+    if (notes) {
+      res.json(notes);
     } else {
-      return res.status(404).json("No 1 User Found");
+      res.status(404).json("No notes Found");
     }
   } catch (error) {
     console.error(error);
     res.status(500).json("Server error");
-  }
+  }  
+})
+
+
+router.get("/todos/:useruid", async (req, res) => {
+  try {
+    const todos = await Todo.find({ userUid: req.params.useruid });
+    if (todos) {
+      res.json(todos);
+    } else {
+      res.status(404).json("No todos Found");
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Server error");
+  }  
 });
+
 
 module.exports = router;
