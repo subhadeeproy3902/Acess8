@@ -61,9 +61,9 @@ function UrlShortener() {
 
   return (
     <>
-      <div className="p-6 pt-24 min-h-screen lg:ml-64 bg-gradient-to-b from-sky-100 to-white">
+      <div className="p-6 pt-24 min-h-screen lg:ml-64 bg-gradient-to-b from-sky-200 via-sky-100 to-white">
         <div className="w-full flex flex-col">
-          <h1 className="text-4xl text-left font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl text-left font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
             {" "}
             Mynly{" "}
           </h1>
@@ -84,12 +84,13 @@ function UrlShortener() {
                   </label>
                   <input
                     id="url"
-                    className="bg-blue-100 border border-blue-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-900 block w-full p-2.5 placeholder:text-gray-600"
+                    className="bg-blue-100 border outline-sky-400 border-blue-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-900 block w-full p-2.5 placeholder:text-gray-600"
                     type="text"
                     name="url"
                     value={longUrl}
                     onChange={(e) => setLongUrl(e.target.value)}
                     placeholder="Enter your URL here"
+                    autoComplete="off"
                     required
                   />
                 </div>
@@ -166,24 +167,28 @@ function UrlShortener() {
           </div>
           <hr className="h-[0.99px] my-6 mt-0 bg-gray-700 border-0"></hr>
         </div>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           <Link
             to="/dashboard/past-urls"
-            className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
+            className="inline-flex items-center w-40 justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
           >
             View Past URLs
           </Link>
 
-          <div className="flex items-center">
-            <div className="text-center text-gray-500 px-5 text-lg font-bold">
-              Or try :
-              <Link
-                to="/dashboard/qr-generator"
-                className="inline-flex ml-5 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:ring-pink-300"
-              >
-                QR7
-              </Link>
-            </div>
+          <div className="flex mt-4 sm:mt-0 sm:ml-6 items-center">
+            <p className="text-center text-gray-500 text-lg font-bold">Or try :</p>
+            <Link
+              to="/dashboard/qr-generator"
+              className="inline-flex ml-5 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:ring-pink-300"
+            >
+              QR7
+            </Link>
+            <Link
+              to="/dashboard/notes-saver"
+              className="inline-flex ml-5 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-amber-600 focus:ring-4 focus:ring-amber-300"
+            >
+              AeroNotes
+            </Link>
           </div>
         </div>
       </div>

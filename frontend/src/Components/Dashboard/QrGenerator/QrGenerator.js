@@ -77,7 +77,7 @@ function QrGenerator() {
 
   return (
     <>
-      <div className="p-6 pt-24 min-h-screen lg:ml-64 bg-gradient-to-b from-pink-100 to-pink">
+      <div className="p-6 pt-24 min-h-screen lg:ml-64 bg-gradient-to-b from-pink-200 via-pink-100 to-white">
         <div className="w-full flex flex-col">
           <h1 className="text-4xl text-left font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
             {" "}
@@ -101,12 +101,13 @@ function QrGenerator() {
                     </label>
                     <input
                       id="url"
-                      className="bg-pink-100 border border-pink-300 text-gray-900 text-base rounded-lg focus:ring-pink-500 focus:border-pink-900 block w-full p-2.5 placeholder:text-gray-600"
+                      className="bg-pink-100 border outline-pink-400 border-pink-300 text-gray-900 text-base rounded-lg focus:ring-pink-500 focus:border-pink-900 block w-full p-2.5 placeholder:text-gray-600"
                       type="text"
                       name="url"
                       value={longUrl}
                       onChange={(e) => setLongUrl(e.target.value)}
                       placeholder="Enter your URL here"
+                      autoComplete="off"
                       required
                     />
                   </div>
@@ -114,7 +115,7 @@ function QrGenerator() {
                     type="submit"
                     className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:ring-pink-300"
                   >
-                    Generate QR Code
+                    Generate QR
                     <svg
                       className="w-3.5 h-3.5 ms-2 rtl:rotate-180"
                       aria-hidden="true"
@@ -213,24 +214,28 @@ function QrGenerator() {
           </div>
           <hr className="h-[0.99px] my-6 mt-0 bg-gray-700 border-0"></hr>
         </div>
-        <div className="flex">
+        <div className="flex flex-col sm:flex-row">
           <Link
             to="/dashboard/past-qrs"
-            className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:ring-pink-300"
+            className="inline-flex items-center w-40 justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-pink-500 rounded-lg hover:bg-pink-600 focus:ring-4 focus:ring-pink-300"
           >
-            View Past QRs
+            View Past URLs
           </Link>
 
-          <div className="flex items-center">
-            <div className="text-center text-gray-500 px-5 text-lg font-bold">
-              Or try :
-              <Link
-                to="/dashboard/url-shortener"
-                className="inline-flex ml-5 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
-              >
-                Mynly
-              </Link>
-            </div>
+          <div className="flex mt-4 sm:mt-0 sm:ml-6 items-center">
+            <p className="text-center text-gray-500 text-lg font-bold">Or try :</p>
+            <Link
+              to="/dashboard/qr-generator"
+              className="inline-flex ml-3 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-amber-600 focus:ring-4 focus:ring-amber-300"
+            >
+              AeroNotes
+            </Link>
+            <Link
+              to="/dashboard/url-shortener"
+              className="inline-flex ml-4 items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-300"
+            >
+              Mynly
+            </Link>
           </div>
         </div>
       </div>

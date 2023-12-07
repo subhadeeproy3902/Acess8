@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Route, Routes, Link } from "react-router-dom";
-import DashboardAbout from "./DashboardAbout/DashboardAbout";
+import Todos from "./Todos/Todos";
 import DashboardHome from "./DashboardHome/DashboardHome";
 import DashboardContact from "./DashboardContact/DashboardContact";
 import { useAuth } from "../../Context/AuthContext";
@@ -11,6 +11,12 @@ import QrGenerator from "./QrGenerator/QrGenerator";
 import PastUrls from "./PastUrls/PastUrls";
 import PastQrs from "./PastQrs/PastQrs";
 import axios from "axios";
+import AeroNotes from "./AeroNotes/AeroNotes";
+import PastNotes from "./PastNotes/PastNotes";
+import UpdateNote from "./AeroNotes/UpdateNote";
+import UpgradeToPro from "./Upgrade/UpgradeToPro";
+import Help from "./Help/Help";
+
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
@@ -85,12 +91,17 @@ const Dashboard = () => {
       <Sidebar />
         <Routes>
           <Route path="/" element={<DashboardHome loginDays={loginDays} />} />
-          <Route path="/dbabout" element={<DashboardAbout />} />
+          <Route path="/todos" element={<Todos />} />
           <Route path="/dbcontact" element={<DashboardContact />} />
           <Route path="/qr-generator" element={<QrGenerator />} />
           <Route path="/url-shortener" element={<UrlShortener />} />
           <Route path="/past-urls" element={<PastUrls />} />
           <Route path="/past-qrs" element={<PastQrs />} />
+          <Route path="/notes-saver" element={<AeroNotes />} />
+          <Route path="/past-notes" element={<PastNotes />} />
+          <Route path="/notes-saver/:id" element={<UpdateNote />} />
+          <Route path="/upgrade-to-pro" element={<UpgradeToPro />} />
+          <Route path="/support" element={<Help />} />
         </Routes>
     </>
   );

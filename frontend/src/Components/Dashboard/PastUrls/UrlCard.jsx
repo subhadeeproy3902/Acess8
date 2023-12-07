@@ -114,7 +114,7 @@ const UrlCard = ({ url }) => {
               </div>
               <div className="flex flex-row sm:flex-col justify-between sm:justify-normal">
                 <span className="bg-blue-300 text-blue-950 text-sm font-medium me-2 mb-4 px-2.5 pb-0.5 h-[35px] flex items-center justify-center rounded select-none">{url.urlCode}</span>
-                <div className="flex flex-row gap-1 flex-1 justify-between">
+                <div className="flex flex-row gap-1 flex-1 justify-start">
                   <button type="button" onClick={handleCopyClick}
                     disabled={copyStatus === "Copied"} className="text-white bg-blue-700 h-[35px] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm px-3 py-2 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                     <svg fill="#ffffff" className="me-2 w-3.5 h-3.5" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"

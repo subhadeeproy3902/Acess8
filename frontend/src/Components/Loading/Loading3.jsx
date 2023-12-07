@@ -4,7 +4,7 @@ import './Loading3.css'
 const Loading3 = () => {
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
+      <div className="flex h-full items-center justify-center">
         <div className="loader">
           <div className="bar1"></div>
           <div className="bar2"></div>
