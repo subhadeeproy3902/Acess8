@@ -6,7 +6,7 @@ import { AuthProvider } from "./Context/AuthContext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import ForgotPassword from "./Components/ForgotPassword/ForgotPassword";
-import Preloader from "./Components/Loading/Preloader";
+import Preloader from "./Components/Loading/Preloader/Preloader";
 import "./App.css";
 
 const App = () => {

@@ -5,7 +5,7 @@ const Loading3 = () => {
   return (
     <>
       <div className="flex h-full items-center justify-center">
-        <div className="loader">
+        <div className="xloader">
           <div className="bar1"></div>
           <div className="bar2"></div>
           <div className="bar3"></div>
