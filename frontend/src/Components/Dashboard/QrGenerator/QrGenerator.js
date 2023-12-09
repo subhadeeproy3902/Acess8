@@ -145,9 +145,9 @@ function QrGenerator() {
                 )}
               </div>
               <div className="w-full h-80 mr-10 flex justify-center items-center">
-                <div class="relative border-gray-900 dark:bg-gray-800 dark:border-gray-800 border-[10px] rounded-[2.5rem] w-full h-full">
-                  <div class="h-[41px] w-[6px] bg-gray-800 dark:bg-gray-800 absolute -end-[16px] top-[40px] rounded-e-lg"></div>
-                  <div class="h-[32px] w-[6px] bg-gray-800 dark:bg-gray-800 absolute -end-[16px] top-[88px] rounded-e-lg"></div>
+                <div class="relative  bg-gray-800 border-gray-800 border-[10px] rounded-[2.5rem] w-full h-full">
+                  <div class="h-[41px] w-[6px] bg-gray-800 absolute -end-[16px] top-[40px] rounded-e-lg"></div>
+                  <div class="h-[32px] w-[6px] bg-gray-800 absolute -end-[16px] top-[88px] rounded-e-lg"></div>
                   <div class="rounded-[2rem] overflow-hidden w-full h-full">
                     <div className="absolute left-0">
                       <button className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-tl-[2rem] rounded-br-lg pointer-events-none cursor-default">

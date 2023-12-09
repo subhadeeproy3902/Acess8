@@ -1,5 +1,4 @@
 const express = require("express");
-const validUrl = require("valid-url");
 const QR = require("../models/QR");
 const { nanoid } = require("nanoid");
 const router = express.Router();
@@ -12,22 +11,26 @@ const num = 10;
 const titleFetch = async (longUrl) => {
   const api_link = process.env.REACT_APP_JSON_LINK;
   const api_key = process.env.REACT_APP_JSON_LINK_API_KEY;
-  const url = api_link + '?url=' + longUrl + '&api_key=' + api_key
+  const url = api_link;
   const options = {
-    method: 'GET',
+    method: "POST",
+    headers: {
+      "apy-token": api_key,
+      "Content-Type": "application/json",
+    },
+    body: `{"url":"${longUrl}"}`,
   };
 
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    console.log(data);
-    const title = data.title;
-    const favicon = data.favicon;
-    const image = data.images[0];
-    return {title, favicon, image};
+    const datas = data.data;
+    const title = datas.title;
+    const favicon = datas.favicons[0];
+    const image = datas.images[0];
+    return { title, favicon, image };
   } catch (error) {
     console.error(error);
-    return null;
   }
 };
 
@@ -45,11 +48,7 @@ const baseUrl =
 
 router.post("/generate-qr", async (req, res) => {
   const { longUrl, userUid } = req.body;
-  if (!validUrl.isUri(baseUrl)) {
-    return res.status(401).json("Invalid base url");
-  }
   const urlCode = nanoid(num);
-  if (validUrl.isUri(longUrl)) {
     try {
       let url = await QR.findOne({ longUrl });
       if (url) {
@@ -83,9 +82,6 @@ router.post("/generate-qr", async (req, res) => {
       console.error(err);
       res.status(500).json("Server error");
     }
-  } else {
-    res.status(401).json("Invalid long url");
-  }
 });
 
 router.delete("/delete/:id", async (req, res) => {

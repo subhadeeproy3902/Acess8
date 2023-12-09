@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../../../Context/AuthContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGlobe, faQrcode, faCaretUp, faTasks, faServer, faNoteSticky } from '@fortawesome/free-solid-svg-icons'
+import { faGlobe, faQrcode, faCaretUp, faServer, faNoteSticky } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 
 
@@ -154,7 +154,7 @@ const DashboardHome = ({ loginDays }) => {
                 <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
                   <img src="/assets/mynly.webp" alt="" loading='lazy' className="w-9 h-9" />
                 </div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mynly</h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">Mynly</h5>
               </div>
             </Link>
             <Link to="/dashboard/qr-generator" className="max-w-sm w-64 hover:scale-105 hover:ring-4 hover:ring-pink-600 hover:ring-offset-8 duration-100 py-4 px-12 flex justify-center items-center rounded-lg shadow" style={{backgroundImage: "linear-gradient(#ff7ce5, #ff7cb5  50%)"}}>
@@ -162,7 +162,7 @@ const DashboardHome = ({ loginDays }) => {
                 <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
                   <img src="/assets/qr7.webp" alt="" loading='lazy' className="w-9 h-9" />
                 </div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">QR7</h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">QR7</h5>
               </div>
             </Link>
             <Link to="/dashboard/notes-saver" className="max-w-sm w-64 hover:scale-105 hover:ring-4 hover:ring-amber-500 hover:ring-offset-8 duration-100 py-4 px-12 flex justify-center items-center rounded-lg shadow" style={{backgroundImage: "linear-gradient(#FFBF00, #FF8C00 50%)"}}>
@@ -170,7 +170,7 @@ const DashboardHome = ({ loginDays }) => {
                 <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
                   <img src="/assets/aero.webp" alt="" loading='lazy' className="w-9 h-9" />
                 </div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">AeroNotes</h5>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">AeroNotes</h5>
               </div>
             </Link>
           </div>
@@ -219,21 +219,7 @@ const DashboardHome = ({ loginDays }) => {
                 </div>
                 <div className="flex-1 text-right md:text-center">
                   <h5 className="font-bold uppercase text-gray-600">Notes Saved</h5>
-                  <h3 className="font-bold text-3xl pt-2"> {notesTotal} <Link to="/dashboard/past-qrs" className="text-purple-500"><FontAwesomeIcon icon={faCaretUp} /></Link></h3>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full md:w-1/2 xl:w-1/3 p-6 px-0 sm:p-6">
-            <div className="bg-gradient-to-b from-orange-200 to-orange-100 border-b-4 border-orange-600 rounded-lg shadow-xl p-5">
-              <div className="flex flex-row items-center">
-                <div className="flex-shrink pr-4">
-                  <div className="rounded-full p-5 bg-orange-600"><FontAwesomeIcon icon={faTasks} size="2x" inverse /></div>
-                </div>
-                <div className="flex-1 text-right md:text-center">
-                  <h5 className="font-bold uppercase text-gray-600">TODOs</h5>
-                  <h3 className="font-bold text-3xl pt-2">1 <Link to="/dashboard/past-qrs" className="text-orange-500"><FontAwesomeIcon icon={faCaretUp} /></Link></h3>
+                  <h3 className="font-bold text-3xl pt-2"> {notesTotal} <Link to="/dashboard/past-notes" className="text-purple-500"><FontAwesomeIcon icon={faCaretUp} /></Link></h3>
                 </div>
               </div>
             </div>

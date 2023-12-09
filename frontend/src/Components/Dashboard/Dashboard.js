@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Route, Routes, Link } from "react-router-dom";
 import DashboardHome from "./DashboardHome/DashboardHome";
-import DashboardContact from "./DashboardContact/DashboardContact";
 import { useAuth } from "../../Context/AuthContext";
 import Loading from "../Loading/Loading";
 import UrlShortener from "./UrlShortener/UrlShortener";
@@ -91,7 +90,6 @@ const Dashboard = () => {
       <Sidebar />
         <Routes>
           <Route path="/" element={<DashboardHome loginDays={loginDays} />} />
-          <Route path="/dbcontact" element={<DashboardContact />} />
           <Route path="/qr-generator" element={<QrGenerator />} />
           <Route path="/url-shortener" element={<UrlShortener />} />
           <Route path="/past-urls" element={<PastUrls />} />

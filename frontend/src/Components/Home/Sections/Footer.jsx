@@ -8,7 +8,7 @@ const Footer = () => {
           <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
             <span class="text-md font-semibold text-white sm:text-center">© 2023 <a href="https://acess8.vercel.app" class="hover:underline">Acess8</a>. All Rights Reserved.
             </span>
-            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-400 sm:mt-0">
               <li>
                 <p class="me-4 md:me-6">About</p>
               </li>
