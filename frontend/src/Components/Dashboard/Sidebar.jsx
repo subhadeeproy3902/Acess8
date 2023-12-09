@@ -20,7 +20,7 @@ const Sidebar = () => {
   async function handleLogout() {
     try {
       await logout();
-      history("/login");
+      history("/");
     } catch {
       console.log("Failed to logout");
     }

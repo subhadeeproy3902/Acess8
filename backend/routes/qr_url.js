@@ -59,11 +59,12 @@ router.post("/generate-qr", async (req, res) => {
           scanCount: url.scanCount,
           urlCode: url.urlCode,
           title: url.title,
+          shortUrl: url.shortUrl,
         });
       } else {
         const shortUrl = baseUrl + "/QR/" + urlCode;
         const {title, favicon, image} = await titleFetch(longUrl);
-        const qrCodeBuffer = await QRcode.toBuffer(longUrl);
+        const qrCodeBuffer = await QRcode.toBuffer(shortUrl);
         const qrCodeBase64 = qrCodeBuffer.toString("base64");
 
         url = new QR({
