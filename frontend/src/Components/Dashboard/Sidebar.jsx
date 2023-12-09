@@ -69,7 +69,7 @@ const Sidebar = () => {
                 </svg>
               </button>
               <Link
-                to="/"
+                to="/dashboard"
                 className="flex pl-4 items-center"
               >
                 <img
@@ -130,12 +130,6 @@ const Sidebar = () => {
                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
               </svg>
               <span className="ms-3">Dashboard</span>
-            </CustomLink>
-            <CustomLink to="/dashboard/todos">
-              <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" className="flex-shrink-0 w-5 h-5 text-gray-300 transition duration-75" fill="currentColor" viewBox="0 0 50 50">
-                <path d="M25,2C12.297,2,2,12.297,2,25s10.297,23,23,23s23-10.297,23-23S37.703,2,25,2z M25,11c1.657,0,3,1.343,3,3s-1.343,3-3,3 s-3-1.343-3-3S23.343,11,25,11z M29,38h-2h-4h-2v-2h2V23h-2v-2h2h4v2v13h2V38z"></path>
-              </svg>
-              <span className="ms-3">Todos</span>
             </CustomLink>
             <li>
               <button type="button" className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example"

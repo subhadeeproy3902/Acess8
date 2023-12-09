@@ -12,25 +12,24 @@ const PastNotes = () => {
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(false);
 
-  const fetchNotes = async () => {
-    setLoading(true);
-    const nodeEnv = process.env.REACT_APP_NODE_ENV;
-    const baseUrl =
-      nodeEnv === "production"
-        ? "https://mynly.vercel.app"
-        : "http://localhost:5000";
-    const apiUrl = baseUrl + "/api/notes/users/" + x + `?page=${page}`;
-    try {
-      const response = await axios.get(apiUrl);
-      setNotes((prevNotes) => [...prevNotes, ...response.data.notes]);
-      setHasMore(response.data.notes.length > 0);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching Notes:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchNotes = async () => {
+      setLoading(true);
+      const nodeEnv = process.env.REACT_APP_NODE_ENV;
+      const baseUrl =
+        nodeEnv === "production"
+          ? "https://mynly.vercel.app"
+          : "http://localhost:5000";
+      const apiUrl = baseUrl + "/api/notes/users/" + x + `?page=${page}`;
+      try {
+        const response = await axios.get(apiUrl);
+        setNotes((prevNotes) => [...prevNotes, ...response.data.notes]);
+        setHasMore(response.data.notes.length > 0);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching Notes:", error);
+      }
+    };
     fetchNotes();
   }, [x, page]);
 
@@ -67,14 +66,21 @@ const PastNotes = () => {
           <div className="w-full mt-10 flex justify-center items-center">
             <Loading3 />
           </div>
-        ) : (
+        ) : notes.length > 0 ? (
           <div className="w-full mt-10 flex justify-center items-center">
             {hasMore ? (
-              <button onClick={handleLoadMore}>Load More</button>
+              <button
+                className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </button>
             ) : (
               <p className="text-gray-500">You have reached the end.</p>
             )}
           </div>
+        ) : (
+          <p></p>
         )}
       </div>
     </>

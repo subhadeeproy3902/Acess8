@@ -26,7 +26,7 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+      <div className="bg-gradient-to-t from-sky-400 to-blue-100 min-h-screen flex flex-col items-center justify-center">
         <div className="bg-white p-8 rounded shadow-md w-96">
           <h2 className="text-3xl font-bold mb-8 text-center">Password Reset</h2>
           {error && (

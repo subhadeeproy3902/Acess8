@@ -25,7 +25,6 @@ const UsedLinks = () => {
       setLoading(true);
       try {
         const response = await axios.get(apiUrl);
-        console.log(response.data)
         setUrls((prevQrs) => [...prevQrs, ...response.data.urls]);
         setHasMore(response.data.urls.length > 0);
         setLoading(false);
@@ -71,14 +70,21 @@ const UsedLinks = () => {
           <div className="w-full mt-10 flex justify-center items-center">
             <Loading3 />
           </div>
-        ) : (
+        ) : urls.length > 0 ? (
           <div className="w-full mt-10 flex justify-center items-center">
             {hasMore ? (
-              <button onClick={handleLoadMore}>Load More</button>
+              <button
+                className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </button>
             ) : (
               <p className="text-gray-500">You have reached the end.</p>
             )}
           </div>
+        ) : (
+          <p></p>
         )}
       </div>
     </>

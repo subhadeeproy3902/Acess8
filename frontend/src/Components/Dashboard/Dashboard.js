@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import { Route, Routes, Link } from "react-router-dom";
-import Todos from "./Todos/Todos";
 import DashboardHome from "./DashboardHome/DashboardHome";
 import DashboardContact from "./DashboardContact/DashboardContact";
 import { useAuth } from "../../Context/AuthContext";
@@ -16,6 +15,7 @@ import PastNotes from "./PastNotes/PastNotes";
 import UpdateNote from "./AeroNotes/UpdateNote";
 import UpgradeToPro from "./Upgrade/UpgradeToPro";
 import Help from "./Help/Help";
+import Documentation from "./Documentation/Documentation";
 
 
 const Dashboard = () => {
@@ -91,7 +91,6 @@ const Dashboard = () => {
       <Sidebar />
         <Routes>
           <Route path="/" element={<DashboardHome loginDays={loginDays} />} />
-          <Route path="/todos" element={<Todos />} />
           <Route path="/dbcontact" element={<DashboardContact />} />
           <Route path="/qr-generator" element={<QrGenerator />} />
           <Route path="/url-shortener" element={<UrlShortener />} />
@@ -102,6 +101,7 @@ const Dashboard = () => {
           <Route path="/notes-saver/:id" element={<UpdateNote />} />
           <Route path="/upgrade-to-pro" element={<UpgradeToPro />} />
           <Route path="/support" element={<Help />} />
+          <Route path="/documentation" element={<Documentation />} />
         </Routes>
     </>
   );
