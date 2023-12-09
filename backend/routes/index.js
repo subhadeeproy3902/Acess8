@@ -29,7 +29,7 @@ router.get("/QR/:code", async (req, res) => {
   try {
     const url = await QR.findOne({ urlCode: req.params.code });
     if (url) {
-      url.scanCount++;
+      await QR.updateOne({ urlCode: req.params.code }, { $inc: { scanCount: 1 } })
       await url.save();
       return res.redirect(url.longUrl);
     } else {

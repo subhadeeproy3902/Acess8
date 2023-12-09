@@ -23,6 +23,7 @@ const titleFetch = async (longUrl) => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
+    console.log(data);
     const datas = data.data;
     const title = datas.title;
     const favicon = datas.favicons[0];

@@ -14,6 +14,7 @@ function QrGenerator() {
   const [uniqueId, setUniqueId] = useState("");
   const [qrimage, setQrimage] = useState("");
   const [qrtitle, setQrtitle] = useState("");
+  const [url, setUrl] = useState("");
   const handleSubmit = async (event) => {
     event.preventDefault();
     const urlInDev = "http://localhost:5000/api/qr/generate-qr";
@@ -31,6 +32,8 @@ function QrGenerator() {
         { withCredentials: true, crossDomain: true }
       );
       setQrCode(response.data.qrCode);
+      setUrl(response.data.shortUrl);
+      console.log(url);
       setUniqueId(response.data.urlCode);
       setErrorMessage("");
       const byteCharacters = atob(response.data.qrCode);
@@ -145,10 +148,10 @@ function QrGenerator() {
                 )}
               </div>
               <div className="w-full h-80 mr-10 flex justify-center items-center">
-                <div class="relative  bg-gray-800 border-gray-800 border-[10px] rounded-[2.5rem] w-full h-full">
-                  <div class="h-[41px] w-[6px] bg-gray-800 absolute -end-[16px] top-[40px] rounded-e-lg"></div>
-                  <div class="h-[32px] w-[6px] bg-gray-800 absolute -end-[16px] top-[88px] rounded-e-lg"></div>
-                  <div class="rounded-[2rem] overflow-hidden w-full h-full">
+                <div className="relative  bg-gray-800 border-gray-800 border-[10px] rounded-[2.5rem] w-full h-full">
+                  <div className="h-[41px] w-[6px] bg-gray-800 absolute -end-[16px] top-[40px] rounded-e-lg"></div>
+                  <div className="h-[32px] w-[6px] bg-gray-800 absolute -end-[16px] top-[88px] rounded-e-lg"></div>
+                  <div className="rounded-[2rem] overflow-hidden w-full h-full">
                     <div className="absolute left-0">
                       <button className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-blue-500 rounded-tl-[2rem] rounded-br-lg pointer-events-none cursor-default">
                         QR Code Here
@@ -168,7 +171,7 @@ function QrGenerator() {
                       </a>
                     </div>
                     <div className="absolute bottom-0 w-full">
-                      <a href={longUrl} target="_blank" rel="noreferrer"
+                      <a href={url} target="_blank" rel="noreferrer"
                         className={`inline-flex w-full items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white rounded-b-[2rem]  ${
                           !qrCode || loading
                             ? "bg-gray-600 pointer-events-none cursor-default"
@@ -178,7 +181,7 @@ function QrGenerator() {
                         SCAN
                       </a>
                     </div>
-                    <div class="flex justify-center items-center text-center w-full h-full bg-white">
+                    <div className="flex justify-center items-center text-center w-full h-full bg-white">
                       {loading && (
                         <>
                           <Loading2 />
