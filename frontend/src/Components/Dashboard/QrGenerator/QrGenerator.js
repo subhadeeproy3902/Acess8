@@ -168,7 +168,7 @@ function QrGenerator() {
                       </a>
                     </div>
                     <div className="absolute bottom-0 w-full">
-                      <button
+                      <a href={longUrl} target="_blank" rel="noreferrer"
                         className={`inline-flex w-full items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white rounded-b-[2rem]  ${
                           !qrCode || loading
                             ? "bg-gray-600 pointer-events-none cursor-default"
@@ -176,7 +176,7 @@ function QrGenerator() {
                         }`}
                       >
                         SCAN
-                      </button>
+                      </a>
                     </div>
                     <div class="flex justify-center items-center text-center w-full h-full bg-white">
                       {loading && (

@@ -24,7 +24,9 @@ const titleFetch = async (longUrl) => {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
+    console.log(data)
     const datas = data.data;
+    console.log(datas);
     const title = datas.title;
     const favicon = datas.favicons[0];
     const image = datas.images[0];
