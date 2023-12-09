@@ -14,7 +14,28 @@
   <meta name="og:image" content="/assets/acess_og.webp"/>
 </head>
 
-<body>
+<style>
+  ::-webkit-scrollbar {
+    height: 0;
+    width: 0.6rem;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+    border-radius: 10rem;
+  }
+  @media (max-width: 420px) {
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+</style>
+
+<body class="bg-gradient-to-bl from-slate-800 to-black">
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 </body>

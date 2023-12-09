@@ -6,7 +6,7 @@ import { faGlobe, faQrcode, faCaretUp, faTasks, faServer, faNoteSticky } from '@
 import axios from 'axios'
 
 
-const DashboardHome = ({loginDays}) => {
+const DashboardHome = ({ loginDays }) => {
   const { currentUser } = useAuth();
   let x = currentUser.uid;
   const [total, setTotal] = useState(0);
@@ -142,11 +142,37 @@ const DashboardHome = ({loginDays}) => {
             <p className='text-slate-100'>Welcome to your dashboard. Scroll to see what's happening with your projects today:</p>
           </div>
         </div>
-        <div className="bg-gray-100 flex justify-center">
-          <div className="flex justify-center items-center gap-16">
-            <Link to="/dashboard/url-shortener" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Url Shortener</Link>
-            <Link to="/dashboard/qr-generator" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Qr Generator</Link>
-            <Link to="/dashboard/notes-saver" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">AeroNotes</Link>
+        <div className='pt-3 bg-transparent'>
+          <div className='rounded-sm bg-transparent p-4 px-0 text-3xl'>
+            <h3 className="font-bold pl-2 text-slate-950">Products 🔥</h3>
+          </div>
+        </div>
+        <div className="bg-gray-100 my-5 flex flex-wrap justify-center">
+          <div className="flex justify-center flex-wrap items-center gap-6 lg:gap-12">
+            <Link to="/dashboard/url-shortener" className="max-w-sm w-64 hover:scale-105 hover:ring-4 hover:ring-blue-700 hover:ring-offset-8 duration-100 py-4 px-12 flex justify-center items-center rounded-lg shadow" style={{backgroundImage: "linear-gradient(#00d8ff,#046cf5 50%)"}}>
+              <div className="flex gap-4 items-center">
+                <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
+                  <img src="/assets/mynly.webp" alt="" loading='lazy' className="w-9 h-9" />
+                </div>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Mynly</h5>
+              </div>
+            </Link>
+            <Link to="/dashboard/qr-generator" className="max-w-sm w-64 hover:scale-105 hover:ring-4 hover:ring-pink-600 hover:ring-offset-8 duration-100 py-4 px-12 flex justify-center items-center rounded-lg shadow" style={{backgroundImage: "linear-gradient(#ff7ce5, #ff7cb5  50%)"}}>
+              <div className="flex gap-4 items-center">
+                <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
+                  <img src="/assets/qr7.webp" alt="" loading='lazy' className="w-9 h-9" />
+                </div>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">QR7</h5>
+              </div>
+            </Link>
+            <Link to="/dashboard/notes-saver" className="max-w-sm w-64 hover:scale-105 hover:ring-4 hover:ring-amber-500 hover:ring-offset-8 duration-100 py-4 px-12 flex justify-center items-center rounded-lg shadow" style={{backgroundImage: "linear-gradient(#FFBF00, #FF8C00 50%)"}}>
+              <div className="flex gap-4 items-center">
+                <div className='w-16 h-16 bg-slate-900 rounded-full flex flex-col justify-center items-center'>
+                  <img src="/assets/aero.webp" alt="" loading='lazy' className="w-9 h-9" />
+                </div>
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">AeroNotes</h5>
+              </div>
+            </Link>
           </div>
         </div>
 
