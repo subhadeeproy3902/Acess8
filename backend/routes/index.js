@@ -3,7 +3,6 @@ const router = express.Router();
 const Url = require("../models/Url");
 const QR = require("../models/QR");
 const Note = require("../models/Note");
-const Todo = require("../models/Todo");
 
 // @route     GET /:code
 // @desc      Redirect to long/original URL
@@ -55,20 +54,6 @@ router.get("/notes/:useruid", async (req, res) => {
   }  
 })
 
-
-router.get("/todos/:useruid", async (req, res) => {
-  try {
-    const todos = await Todo.find({ userUid: req.params.useruid });
-    if (todos) {
-      res.json(todos);
-    } else {
-      res.status(404).json("No todos Found");
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json("Server error");
-  }  
-});
 
 
 module.exports = router;

@@ -1,4 +1,5 @@
 const express = require("express");
+const validUrl = require("valid-url");
 const Url = require("../models/Url");
 const { nanoid } = require("nanoid");
 const router = express.Router();
@@ -8,20 +9,21 @@ const router = express.Router();
 const num = 10;
 
 const titleFetch = async (longUrl) => {
-  const api_link = process.env.REACT_APP_JSON_LINK;
-  const api_key = process.env.REACT_APP_JSON_LINK_API_KEY;
-  const url = api_link;
+  const url1 = process.env.REACT_APP_APYHUB_LINK;
+  const api_key1 = process.env.REACT_APP_APYHUB_API_KEY;
+  const url2 = process.env.REACT_APP_JSON_LINK;
+  const api_key2 = process.env.REACT_APP_JSON_LINK_API_KEY;
   const options = {
     method: "POST",
     headers: {
-      "apy-token": api_key,
+      "apy-token": api_key1,
       "Content-Type": "application/json",
     },
     body: `{"url":"${longUrl}"}`,
   };
 
   try {
-    const response = await fetch(url, options);
+    const response = await fetch(url1, options);
     const data = await response.json();
     console.log(data);
     const datas = data.data;
@@ -30,7 +32,23 @@ const titleFetch = async (longUrl) => {
     const image = datas.images[0];
     return { title, favicon, image };
   } catch (error) {
-    console.error(error);
+    const url = `${url2}?url=${longUrl}&api_key=${api_key2}`;
+    const options = {method: 'POST', headers: {'content-type': 'application/json'}, body: undefined};
+
+    try {
+      const response = await fetch(url, options);
+      const data = await response.json();
+      console.log(data);
+      const title = data.title;
+      const favicon = data.favicon;
+      const image = data.images[0];
+      return { title, favicon, image };
+    } catch (error) {
+      const title = null;
+      const favicon = null;
+      const image = null;
+      return { title, favicon, image };
+    }
   }
 };
 
@@ -42,33 +60,40 @@ const baseUrl =
 
 router.post("/shorten", async (req, res) => {
   const { longUrl, userUid } = req.body;
+  if (!validUrl.isUri(baseUrl)) {
+    return res.status(401).json("Invalid base url");
+  }
   const urlCode = nanoid(num);
-  try {
-    let url = await Url.findOne({ longUrl });
-    if (url) {
-      res.json({
-        shortUrl: url.shortUrl,
-        clickCount: url.clickCount,
-      });
-    } else {
-      const shortUrl = baseUrl + "/" + urlCode;
-      const { title, favicon, image } = await titleFetch(longUrl);
-      url = new Url({
-        userUid,
-        longUrl,
-        shortUrl,
-        urlCode,
-        title,
-        icon: image,
-        photoUrl: favicon,
-        date: new Date(),
-      });
-      await url.save();
-      res.json(url);
+  if (validUrl.isUri(longUrl)) {
+    try {
+      let url = await Url.findOne({ longUrl });
+      if (url) {
+        res.json({
+          shortUrl: url.shortUrl,
+          clickCount: url.clickCount,
+        });
+      } else {
+        const shortUrl = baseUrl + "/" + urlCode;
+        const { title, favicon, image } = await titleFetch(longUrl);
+        url = new Url({
+          userUid,
+          longUrl,
+          shortUrl,
+          urlCode,
+          title,
+          icon: image,
+          photoUrl: favicon,
+          date: new Date(),
+        });
+        await url.save();
+        res.json(url);
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).json("Server error");
     }
-  } catch (err) {
-    console.error(err);
-    res.status(500).json("Server error");
+  } else {
+    res.status(401).json("Invalid long url");
   }
 });
 

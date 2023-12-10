@@ -48,7 +48,7 @@ const UrlCard = ({ url }) => {
           <div className="flex flex-col sm:flex-row gap-6">
             <div className="flex gap-6 flex-col sm:flex-row w-full">
               <div className="hidden w-8 sm:flex rounded-full ">
-                <img className="rounded-full h-7 w-7 mt-1" alt="ok" src={((url.photoUrl === '' || !url.photoUrl) && (url.icon === "" || !url.icon)) ? "/assets/iconnotfound.png" : url.photoUrl || url.icon} />
+                <img className="rounded-full h-7 w-7 mt-1" alt="ok" src={((url.photoUrl === '' || !url.photoUrl) && (url.icon === "" || !url.icon)) ? "/assets/iconnotfound.png" : url.photoUrl || url.icon} onError={(e) => { e.target.onerror = null; e.target.src="/assets/iconnotfound.png"; }} />
               </div>
               <div className="flex w-10/12 flex-col">
                 <div className="flex mb-4 flex-col gap-6 sm:gap-4">
