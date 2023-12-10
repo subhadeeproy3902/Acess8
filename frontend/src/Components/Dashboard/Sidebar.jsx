@@ -37,7 +37,7 @@ const Sidebar = () => {
       setIsOpen(false);
       setIsMenuOpen(false);
     };
-  }, []);
+  }, [location.pathname]);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown2Open, setIsDropdown2Open] = useState(false);
