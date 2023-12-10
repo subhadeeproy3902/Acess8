@@ -170,7 +170,7 @@ const AeroNotes = () => {
               <button
                 form="noteForm"
                 type="submit"
-                className={`inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 w-full sm:w-52 ${!title ? "bg-gray-600 pointer-events-none cursor-default" : "hover:shadow focus:ring-4 focus:ring-amber-300"}`}
+                className="inline-flex items-center justify-center px-5 py-3 duration-75 text-base font-medium text-center text-white bg-amber-500 rounded-lg hover:bg-amber-600 focus:ring-4 focus:ring-amber-300 w-full sm:w-52"
               >
                 Save Note
               </button>
