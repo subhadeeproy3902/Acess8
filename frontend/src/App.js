@@ -26,21 +26,24 @@ const App = () => {
           <Preloader />
         </div>
       ) : (
-      <div className="bg-gray-100 min-h-screen flex justify-center" id="fadein">
-        <div className="w-full">
-          <AuthProvider>
-            <Router>
-              <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route path="/dashboard/*" element={<Dashboard />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
-              </Routes>
-            </Router>
-          </AuthProvider>
+        <div
+          className="bg-gray-100 min-h-screen flex justify-center"
+          id="fadein"
+        >
+          <div className="w-full">
+            <AuthProvider>
+              <Router>
+                <Routes>
+                  <Route exact path="/" element={<Home />} />
+                  <Route path="/dashboard/*" element={<Dashboard />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/forgot-password" element={<ForgotPassword />} />
+                </Routes>
+              </Router>
+            </AuthProvider>
+          </div>
         </div>
-      </div>
       )}
     </>
   );

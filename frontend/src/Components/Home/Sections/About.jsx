@@ -83,7 +83,7 @@ const About = () => {
                 </div>
               </div>
               <div className="flex items-start gap-4 sm:gap-5 flex-row">
-                <div className="bg-gray-100 dark:bg-gray-700 rounded-full w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center shrink-0">
+                <div className="bg-gray-700 rounded-full w-16 h-16 lg:w-24 lg:h-24 flex items-center justify-center shrink-0">
                   <svg className="w-10 lg:w-12 h-10 lg:h-12 text-white" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                     <title>Analytics</title>
                     <g id="Analytics" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" strokeDasharray="0,0" strokeLinecap="round">
@@ -92,10 +92,10 @@ const About = () => {
                     </g>
                   </svg></div>
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 sm:text-2xl dark:text-white">
+                  <h3 className="text-xl font-bold  sm:text-2xl text-white">
                     Analytics Empowerment
                   </h3>
-                  <p className="mt-2 text-base font-normal text-gray-500 sm:text-lg dark:text-gray-400">
+                  <p className="mt-2 text-base font-normal sm:text-lg text-gray-400">
                     Track the performance of your shortened URLs and QR codes, allowing you to make data-driven decisions for optimized online engagement.
                   </p>
                 </div>
