@@ -25,14 +25,8 @@ app.use('/', require('./routes/index'));
 app.use('/api/qr', require('./routes/qr_url'));
 app.use('/api/url', require('./routes/url'));
 app.use('/api/login', require('./routes/userLogin'));
-
-
 app.use('/api/notes', require('./routes/notes'));
 app.use('/api/notes/users', require('./routes/notes_users'));
-
-app.use('/api/todos', require('./routes/todos'));
-app.use('/api/todos/users', require('./routes/todos_users'));
-
 
 
 const PORT = process.env.PORT || 5000;

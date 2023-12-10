@@ -24,7 +24,7 @@ const PastNotes = () => {
       try {
         const response = await axios.get(apiUrl);
         setNotes((prevNotes) => [...prevNotes, ...response.data.notes]);
-        setHasMore(response.data.notes.length > 0);
+        setHasMore(response.data.notes.length >= 20);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching Notes:", error);

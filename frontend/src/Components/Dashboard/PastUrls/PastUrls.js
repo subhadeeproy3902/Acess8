@@ -26,7 +26,7 @@ const UsedLinks = () => {
       try {
         const response = await axios.get(apiUrl);
         setUrls((prevUrls) => [...prevUrls, ...response.data.urls]);
-        setHasMore(response.data.urls.length > 0);
+        setHasMore(response.data.urls.length >= 20);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching URLs:", error);
