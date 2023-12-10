@@ -19,7 +19,6 @@ import Documentation from "./Documentation/Documentation";
 
 const Dashboard = () => {
   const { currentUser } = useAuth();
-  let x = currentUser.uid;
   const [showLoading, setShowLoading] = useState(true);
   const [loginDays, setLoginDays] = useState(0);
 
@@ -41,7 +40,7 @@ const Dashboard = () => {
         const response = await axios.post(
           baseUrl + "/api/login/userLogin",
           {
-            userID: x,
+            userID: currentUser.uid,
           },
           {
             withCredentials: true,
@@ -55,7 +54,7 @@ const Dashboard = () => {
     if (currentUser) {
       updateLoginCount();
     }
-  }, [currentUser, x]);
+  }, [currentUser]);
 
   if (showLoading) {
     return <Loading />;
