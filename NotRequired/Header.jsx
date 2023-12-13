@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useMatch, useResolvedPath, useNavigate } from "react-router-dom";
 import { useAuth } from "../frontend/src/Context/AuthContext";
 
+
 const Header = () => {
   const { currentUser, logout } = useAuth()
   const [isOpen, setIsOpen] = useState(false);
